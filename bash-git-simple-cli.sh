@@ -164,16 +164,18 @@ do
     "Delete branch")
 
       # Define the branch name
-      echo -n "=> Branch to delete: "
+      echo -n "=> Branch name to delete: "
       read BRANCH
 
-      echo -n "=> Are you sure you want to delete local and remote \"$BRANCH\"? YES / NO:  "
-      read DELETE_BRANCH
+      echo -n "=> Delete local branch: \"$BRANCH\"? (y/n): "
+      read DELETE_LOCAL_BRANCH
+      echo -n "=> Delete remote branch: \"$BRANCH\"? (y/n): "
+      read DELETE_REMOTE_BRANCH
 
       # Define the emailaddress used in conjuction with the SSH key to access github
       if [ -z "$SSH_KEY" ]
       then
-        echo -n "Full path of SSH key: "
+        echo -n "=> Full path of SSH key: "
         read SSH_KEY
         USING_DEFAULTS=false
       fi
@@ -184,11 +186,20 @@ do
         echo "=> Using default SSH key"
       fi
 
-      # Define the emailaddress used in conjuction with the SSH key to access github
-      if [ $DELETE_BRANCH == "YES" ]
+      # If we are going to delete the local branch
+      if [ $DELETE_LOCAL_BRANCH == "y" ]
       then
+        # Prompt that the task was cancelled
+        echo "=> Deleting local branch..."
         # Delete the local branch
         git branch -d $BRANCH
+      fi
+
+      # If we are going to delete the remote branch
+      if [ $DELETE_REMOTE_BRANCH == "y" ]
+      then
+        # Prompt that the task was cancelled
+        echo "=> Deleting remote branch..."
 
         # Fork a copy of ssh-agent and generate Bourne shell commands on stdout
         eval $(ssh-agent -s)
@@ -201,14 +212,16 @@ do
 
         # Kill the ssh-agent process
         pkill ssh-agent
+      fi
 
-        break
-      else
+      # If both options were no
+      if [ $DELETE_LOCAL_BRANCH == "n" ] && [ $DELETE_REMOTE_BRANCH == "n" ]
+      then
         # Prompt that the task was cancelled
         echo "=> Cancelled "
-
-        break
       fi
+
+      break
     ;;
 
     # ==========================
