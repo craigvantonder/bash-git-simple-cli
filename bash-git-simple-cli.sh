@@ -1,6 +1,10 @@
 #!/bin/bash
 
-# bash-git-simple-cli - A simple Command Line Interface written in bash for maintaining Github repositories with Git.
+###
+ # @bash-git-simple-cli A simple Command Line Interface written in BASH and used to maintain Github repositories with Git.
+ # @author Craig van Tonder
+ # @version 0.0.2
+ ##
 
 ##### CONSTANTS
 
