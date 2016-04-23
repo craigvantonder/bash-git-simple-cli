@@ -25,7 +25,7 @@ PS3='What would you like to do? '
 # Define the select options
 OPTIONS=(
   "Commit to remote"
-  "Refresh with remote"
+  "Refresh local"
   "Merge branches"
   "Show branches"
   "Create branch"
@@ -104,7 +104,7 @@ while true; do
   # ================
   # SELECTED REFRESH
   # ================
-  if [[ $option == "Refresh with remote" ]]; then
+  if [[ $option == "Refresh local" ]]; then
     # Prompt the user to confirm that the refresh will happen (could lose changes)
     echo -n "=> Are you sure you want to refresh? (y/n): "
     read CONFIRM_REFRESH
@@ -113,7 +113,7 @@ while true; do
     if [ $CONFIRM_REFRESH == "y" ]
     then
       # Started task
-      echo "=> Refreshing with remove..."
+      echo "=> Refreshing local repository..."
 
        # Fork a copy of ssh-agent and generate Bourne shell commands on stdout
       eval $(ssh-agent -s)
@@ -344,14 +344,15 @@ while true; do
   # =====================================
   # INPUT WAS NOT WITHIN RANGE OF OPTIONS
   # =====================================
-  if [[ !$option == "Commit to remote" &&
-        !$option == "Merge branches" &&
-        !$option == "Show branches" &&
-        !$option == "Create branch" &&
-        !$option == "Switch to branch" &&
-        !$option == "Delete branch" &&
-        !$option == "Initialise .git/config" &&
-        !$option == "Cancel" ]]; then
+  if [ [ $option !== "Commit to remote" ] &&
+       [ $option !== "Merge branches" ] &&
+       [ $option !== "Merge branches" ] &&
+       [ $option !== "Show branches" ] &&
+       [ $option !== "Create branch" ] &&
+       [ $option !== "Switch to branch" ] &&
+       [ $option !== "Delete branch" ] &&
+       [ $option !== "Initialise .git/config" ] &&
+       [ $option !== "Cancel" ] ]; then
     echo "Invalid option selected!"
   fi
 
