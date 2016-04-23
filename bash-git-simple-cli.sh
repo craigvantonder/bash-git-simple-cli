@@ -242,7 +242,7 @@ while true; do
       # Started task
       echo "=> Deleting local branch..."
       # Delete the local branch
-      git branch -d $BRANCH
+      git branch -D $BRANCH
     fi
 
     # If we are going to delete the remote branch
@@ -344,16 +344,16 @@ while true; do
   # =====================================
   # INPUT WAS NOT WITHIN RANGE OF OPTIONS
   # =====================================
-  if [ !$option == "Commit to remote" ] &&
-       [ !$option == "Refresh local" ] &&
-       [ !$option == "Merge branches" ] &&
-       [ !$option == "Show branches" ] &&
-       [ !$option == "Create branch" ] &&
-       [ !$option == "Switch to branch" ] &&
-       [ !$option == "Delete branch" ] &&
-       [ !$option == "Initialise .git/config" ] &&
-       [ !$option == "Cancel" ]; then
-    echo "Invalid option selected!"
-  fi
+  # if [ !$option == "Commit to remote" ] &&
+  #      [ !$option == "Refresh local" ] &&
+  #      [ !$option == "Merge branches" ] &&
+  #      [ !$option == "Show branches" ] &&
+  #      [ !$option == "Create branch" ] &&
+  #      [ !$option == "Switch to branch" ] &&
+  #      [ !$option == "Delete branch" ] &&
+  #      [ !$option == "Initialise .git/config" ] &&
+  #      [ !$option == "Cancel" ]; then
+  #   echo "Invalid option selected!"
+  # fi
 
 done
