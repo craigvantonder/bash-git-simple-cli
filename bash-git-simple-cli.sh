@@ -3,7 +3,7 @@
 ###
  # @bash-git-simple-cli A simple Command Line Interface written in BASH and used to maintain Github repositories with Git.
  # @author Craig van Tonder
- # @version 0.0.3
+ # @version 0.0.4
  ##
 
 ##### CONSTANTS
@@ -25,6 +25,7 @@ PS3='What would you like to do? '
 # Define the select options
 OPTIONS=(
   "Commit to remote"
+  "Refresh with remote"
   "Merge branches"
   "Show branches"
   "Create branch"
@@ -98,6 +99,50 @@ while true; do
     # Ended task
     echo "Successfully committed to remote!"
     echo "What would you like to do next?"
+  fi
+
+  # ================
+  # SELECTED REFRESH
+  # ================
+  if [[ $option == "Refresh with remote" ]]; then
+    # Prompt the user to confirm that the refresh will happen (could lose changes)
+    echo -n "=> Are you sure you want to refresh? (y/n): "
+    read CONFIRM_REFRESH
+
+    # If we are going to refresh with remote
+    if [ $CONFIRM_REFRESH == "y" ]
+    then
+      # Started task
+      echo "=> Refreshing with remove..."
+
+       # Fork a copy of ssh-agent and generate Bourne shell commands on stdout
+      eval $(ssh-agent -s)
+
+      # Load the ssh key for access to Github
+      ssh-add $SSH_KEY
+
+      # Fetch the latest commit from remote
+      git fetch origin master;
+
+      # Kill the ssh-agent process
+      pkill ssh-agent;
+
+      # Reset to the latest commit
+      git reset --hard FETCH_HEAD;
+
+      # Clean up any excess files that are not in the latest commit
+      git clean -df;
+
+      # Ended task
+      echo "What would you like to do next?"
+    fi
+
+    # If we are not going to refresh
+    if [ $CONFIRM_REFRESH == "n" ] ]
+    then
+      # Prompt that the task was cancelled
+      echo "=> Cancelled..."
+    fi
   fi
 
   # =======================
@@ -194,7 +239,7 @@ while true; do
     # If we are going to delete the local branch
     if [ $DELETE_LOCAL_BRANCH == "y" ]
     then
-      # Prompt that the task was cancelled
+      # Started task
       echo "=> Deleting local branch..."
       # Delete the local branch
       git branch -d $BRANCH
@@ -203,7 +248,7 @@ while true; do
     # If we are going to delete the remote branch
     if [ $DELETE_REMOTE_BRANCH == "y" ]
     then
-      # Prompt that the task was cancelled
+      # Started task
       echo "=> Deleting remote branch..."
 
       # Fork a copy of ssh-agent and generate Bourne shell commands on stdout
@@ -223,7 +268,7 @@ while true; do
     if [ $DELETE_LOCAL_BRANCH == "n" ] && [ $DELETE_REMOTE_BRANCH == "n" ]
     then
       # Prompt that the task was cancelled
-      echo "=> Cancelled "
+      echo "=> Cancelled..."
     fi
 
     # Ended task
