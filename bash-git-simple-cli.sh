@@ -344,7 +344,7 @@ while true; do
   # =====================================
   # INPUT WAS NOT WITHIN RANGE OF OPTIONS
   # =====================================
-  if [ [ $option !== "Commit to remote" ] &&
+  if [ $option !== "Commit to remote" ] &&
        [ $option !== "Refresh local" ] &&
        [ $option !== "Merge branches" ] &&
        [ $option !== "Show branches" ] &&
@@ -352,7 +352,7 @@ while true; do
        [ $option !== "Switch to branch" ] &&
        [ $option !== "Delete branch" ] &&
        [ $option !== "Initialise .git/config" ] &&
-       [ $option !== "Cancel" ] ]; then
+       [ $option !== "Cancel" ]; then
     echo "Invalid option selected!"
   fi
 
