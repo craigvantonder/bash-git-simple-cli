@@ -345,7 +345,7 @@ while true; do
   # INPUT WAS NOT WITHIN RANGE OF OPTIONS
   # =====================================
   if [ [ $option !== "Commit to remote" ] &&
-       [ $option !== "Merge branches" ] &&
+       [ $option !== "Refresh local" ] &&
        [ $option !== "Merge branches" ] &&
        [ $option !== "Show branches" ] &&
        [ $option !== "Create branch" ] &&

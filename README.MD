@@ -17,10 +17,11 @@ You will also need generate an SSH key and add it to your github account. More i
 Available options:
 
 1. Commit to remote
-2. Merge branches
-3. Show branches
-4. Create branch
-5. Switch to branch
-6. Delete branch
-7. Initialise .git/config
-8. Cancel
+2. Refresh local
+3. Merge branches
+4. Show branches
+5. Create branch
+6. Switch to branch
+7. Delete branch
+8. Initialise .git/config
+9. Cancel
