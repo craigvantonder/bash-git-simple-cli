@@ -3,7 +3,7 @@
 ###
  # @bash-git-simple-cli A simple Command Line Interface written in BASH and used to maintain Github repositories with Git.
  # @author Craig van Tonder
- # @version 0.0.4
+ # @version 0.0.6
  ##
 
 ##### CONSTANTS
@@ -25,6 +25,7 @@ PS3='What would you like to do? '
 # Define the select options
 OPTIONS=(
   "Commit to remote"
+  "Stop tracking file"
   "Refresh local"
   "Merge branches"
   "Show branches"
@@ -98,6 +99,21 @@ while true; do
 
     # Ended task
     echo "Successfully committed to remote!"
+    echo "What would you like to do next?"
+  fi
+
+  # ======================
+  # SELECTED STOP TRACKING
+  # ======================
+  if [[ $option == "Stop tracking file" ]]; then
+    # Prompt the user to confirm that the refresh will happen (could lose changes)
+    echo -n "File to stop tracking? (relative path): "
+    read STOP_TRACKING_FILE
+
+    # Stop tracking the specified file
+    git rm --cached $STOP_TRACKING_FILE
+
+    # Ended task
     echo "What would you like to do next?"
   fi
 
