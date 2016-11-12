@@ -3,7 +3,7 @@
 ###
  # @bash-git-simple-cli A simple Command Line Interface written in BASH and used to maintain Github repositories with Git.
  # @author Craig van Tonder
- # @version 0.0.6
+ # @version 0.0.7
  ##
 
 ##### CONSTANTS
@@ -15,7 +15,7 @@ USER_NAME=""
 # EG: me@mydomain.com
 USER_EMAIL=""
 # EG: /path/to/id_rsa
-SSH_KEY="";
+SSH_KEY=""
 
 ##### END CONSTANTS
 
@@ -154,7 +154,7 @@ while true; do
     fi
 
     # If we are not going to refresh
-    if [ $CONFIRM_REFRESH == "n" ] ]
+    if [ $CONFIRM_REFRESH == "n" ]
     then
       # Prompt that the task was cancelled
       echo "=> Cancelled..."
