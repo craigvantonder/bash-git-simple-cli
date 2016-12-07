@@ -3,7 +3,7 @@
 ###
  # @bash-git-simple-cli A simple Command Line Interface written in BASH and used to maintain Github repositories with Git.
  # @author Craig van Tonder
- # @version 0.0.7
+ # @version 0.0.8
  ##
 
 ##### CONSTANTS
@@ -111,7 +111,7 @@ while true; do
     read STOP_TRACKING_FILE
 
     # Stop tracking the specified file
-    git rm --cached $STOP_TRACKING_FILE
+    git rm -r --cached $STOP_TRACKING_FILE
 
     # Ended task
     echo "What would you like to do next?"
