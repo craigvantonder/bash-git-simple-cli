@@ -25,3 +25,5 @@ Available options:
 7. Delete branch
 8. Initialise .git/config
 9. Cancel
+
+Licence: MIT
